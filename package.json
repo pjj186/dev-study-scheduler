@@ -2,7 +2,9 @@
   "name": "dev-study-scheduler",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
+    "@craco/craco": "^6.4.3",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@testing-library/jest-dom": "^5.16.4",
@@ -14,6 +16,9 @@
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
     "@types/react-router": "^5.1.18",
+    "concurrently": "^7.2.1",
+    "craco-alias": "^3.0.1",
+    "cross-env": "^7.0.3",
     "history": "^5.3.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -21,12 +26,13 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.6.4",
+    "wait-on": "^6.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "concurrently \"cross-env BROWSER=none cross-env TAILWIND_MODE=watch craco start\" \"wait-on http://localhost:3000 && electron .",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "react-start": "BROWSER=none npm start",
     "electron-start": "ELECTRON_START_URL=http://localhost:3000 electron .",
@@ -57,6 +63,5 @@
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"
   },
-  "main": "public/Main.js",
-  "homepage": "./"
+  "main": "public/Main.js"
 }
